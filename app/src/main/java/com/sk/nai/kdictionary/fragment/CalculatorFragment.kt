@@ -24,14 +24,16 @@ class CalculatorFragment : Fragment() {
     private var btnDivide: Button? = null
     private var btnNext: Button? = null
 
+    private var mCallBack: OnButtonClickListener? = null
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_calculator, container, false)
-        initViews(savedInstanceState,rootView)
+        initViews(savedInstanceState, rootView)
         return rootView
     }
 
-    private fun initViews(savedInstanceState: Bundle?,rootView: View) {
+    private fun initViews(savedInstanceState: Bundle?, rootView: View) {
         with(rootView) {
             editText1 = findViewById(R.id.edit_text1) as EditText?
             editText2 = findViewById(R.id.edit_text2) as EditText?
@@ -60,11 +62,19 @@ class CalculatorFragment : Fragment() {
             }
         })
         btnNext?.setOnClickListener({
-            //TODO implement nextButton listener
+            mCallBack?.onClicked(this)?:throw Exception("Must implements onClickedCallbacks")
         })
     }
 
-    interface OnButtonClickListener{
-        fun onClicked(fragment:Fragment)
+    interface OnButtonClickListener {
+
+        fun onClicked(fragment: Fragment)
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnButtonClickListener) {
+            mCallBack = context
+        }
     }
 }

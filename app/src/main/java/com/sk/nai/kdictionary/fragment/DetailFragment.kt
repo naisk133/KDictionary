@@ -7,14 +7,24 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 import com.sk.nai.kdictionary.R
 
 class DetailFragment : Fragment() {
 
+    private var textView: TextView? = null
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_detail, container, false)
+        val rootView = inflater!!.inflate(R.layout.fragment_detail, container, false)
+        initViews(savedInstanceState, rootView)
+        return rootView
+    }
+
+    private fun initViews(savedInstanceState: Bundle?, rootView: View?) {
+        textView = rootView?.findViewById(R.id.text_view) as TextView?
+        textView?.text = "Waiting for data transfer implementation"
     }
 
 }
