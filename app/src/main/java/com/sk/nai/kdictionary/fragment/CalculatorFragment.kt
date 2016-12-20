@@ -3,6 +3,7 @@ package com.sk.nai.kdictionary.fragment
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Message
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,13 +63,13 @@ class CalculatorFragment : Fragment() {
             }
         })
         btnNext?.setOnClickListener({
-            mCallBack?.onClicked(this)?:throw Exception("Must implements onClickedCallbacks")
+            mCallBack?.onClicked(this, textView?.text.toString()) ?: throw Exception("Must implements onClickedCallbacks")
         })
     }
 
     interface OnButtonClickListener {
 
-        fun onClicked(fragment: Fragment)
+        fun onClicked(fragment: Fragment, message: String)
     }
 
     override fun onAttach(context: Context?) {

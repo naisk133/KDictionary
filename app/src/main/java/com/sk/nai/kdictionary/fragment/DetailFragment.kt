@@ -24,7 +24,7 @@ class DetailFragment : Fragment() {
 
     private fun initViews(savedInstanceState: Bundle?, rootView: View?) {
         textView = rootView?.findViewById(R.id.text_view) as TextView?
-        textView?.text = "Waiting for data transfer implementation"
+        textView?.text = arguments.getString("Result")
     }
 
 }

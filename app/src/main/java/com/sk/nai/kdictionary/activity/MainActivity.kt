@@ -25,19 +25,25 @@ class MainActivity : AppCompatActivity(), CalculatorFragment.OnButtonClickListen
         }
     }
 
-    override fun onClicked(fragment: Fragment) {
-        Log.wtf("MainActivity","onClicked called")
+    override fun onClicked(fragment: Fragment, message: String) {
+        Log.wtf("MainActivity", "onClicked called")
         when (fragment) {
             is CalculatorFragment -> {
+                val bundle = Bundle()
+                bundle.putString("Result", message)
+
+                val nextFragment = DetailFragment()
+                nextFragment.arguments = bundle
+
                 supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, DetailFragment()).addToBackStack(null).commit()
+                        .replace(R.id.container, nextFragment).addToBackStack(null).commit()
             }
             is DetailFragment -> {
                 //TODO add DetailFragment OnClickListener
-                Log.wtf("MainActivity","onClicked from detailFragment")
+                Log.wtf("MainActivity", "onClicked from detailFragment")
             }
             else -> {
-                Log.wtf("MainActivity","onClicked from other Fragments")
+                Log.wtf("MainActivity", "onClicked from other Fragments")
             }
         }
     }
