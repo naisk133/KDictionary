@@ -1,4 +1,4 @@
-##github.com/naisk133/KDictionary
+##https://github.com/naisk133/KDictionary
 
 # KDictionary
 
