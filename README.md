@@ -9,3 +9,6 @@
 ###https://kotlinlang.org/docs/tutorials/kotlin-android.html
 ###https://kotlinlang.org/docs/tutorials/android-plugin.html
 ###**Don't forget to disable instant run**
+
+##Android Emulator
+###https://www.genymotion.com/
