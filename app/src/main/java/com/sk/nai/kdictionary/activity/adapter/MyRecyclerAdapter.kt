@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sk.nai.kdictionary.R
+import com.sk.nai.kdictionary.model.Formula
 import com.sk.nai.kdictionary.model.Person
 
 /**
  * Created by naisk133 on 20/12/2559.
  */
-class MyRecyclerAdapter(val list: List<Person>) : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>() {
+class MyRecyclerAdapter(val list: List<Formula>) : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameText: TextView = itemView.findViewById(R.id.text_name) as TextView
-        var lastNameText: TextView = itemView.findViewById(R.id.text_last_name) as TextView
     }
 
     override fun getItemCount(): Int {
@@ -31,7 +31,11 @@ class MyRecyclerAdapter(val list: List<Person>) : RecyclerView.Adapter<MyRecycle
 
     override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
         Log.wtf("MyRecyclerAdapter", "binding at position $position -> name = ${list[position].name}")
-        holder?.nameText?.text = list[position].name
-        holder?.lastNameText?.text = list[position].lastName
+        var str = list[position].name
+        for (param in list[position].params) {
+            str += param
+        }
+        str += list[position].formula
+        holder?.nameText?.text = str
     }
 }
